@@ -1,23 +1,29 @@
 from Livre import Livre
+import json
 class Bibliotheque :
-    def __init__(self,livres=[]):
+    def __init__(self,livres=[], fichier_json="db.json"):
         self.livres = livres
-    
+        self.fichier_json = fichier_json
+    def charger_donnees(self) :
+        try :
+            with open(self.fichier_json, "wt") as f :
+                self.livres =json.load(f)
+        except FileNotFoundError :
+            self.livres = []
+
     def ajouter_livre(self) :
+
+        with open(self.fichier_json, "wt") as f :
+            json.dump(self.livres, f, indent=2)
+
         Livres={
         "titre" : Livre.titre,
         "auteur" : Livre.auteur,
         "annee_publication" : Livre.annee_publication,
         "ISBN" : Livre.isbn}
         self.livres.append(Livres)
-        # db = livres()
-        # livres.open()
-        # db.write({
-        #    "titre" : Livre.titre,
-        #    "auteur" : Livre.auteur,
-        #    "annee_publication" : Livre.annee_publication,
-        #    "INBN" : Livre.isbn
-        # })
+
+        
 
     def supprimer_livres(self,isbn_cible) :
         
@@ -39,3 +45,7 @@ class Bibliotheque :
                 titre_recherche != Livre.titre 
             except "titreError" :
                 print("titre intouvable")
+
+
+biblio = Bibliotheque(livres="bibli_livres")
+biblio.ajouter_livre(Objet1)

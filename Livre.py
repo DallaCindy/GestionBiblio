@@ -4,9 +4,9 @@ class Livre :
         self.titre = titre
         self.auteur = auteur
 
-        self.annee_publication = annee_publication
+        self.annee_publication = int(annee_publication)
         
-
+        
         if self.annee_publication > 1900 :
             return "annee de publication valide"
         try :
@@ -30,8 +30,8 @@ class Livre :
             Annee de la Publication : {self.annee_publication},\n\
             ISBN : {self.isbn}"
 
-        
-
+Objet1 = Livre("Le Petit Prince", "Antoine de Saint-Exupéry", "1920", "Panierwgrq")     
+print(Objet1.Affiche_livre)
 
 
                 
